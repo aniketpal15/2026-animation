@@ -166,11 +166,13 @@ body {
      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .greeting .line .fol a{
+  position: relative;
   text-decoration: none;
+  font-size: 20px;
   padding: 10px;
   color: white;
   border: 2px solid rgba(255, 255, 255, 0);
-  border-radius: 40px;
+  border-radius:80px;
   cursor: pointer;
   background: linear-gradient(135deg, #ff6bcb, #ffd93b);
   color: #1b0022;
@@ -184,6 +186,10 @@ body {
 
     
 }
+.ani:hover {
+  filter: brightness(1.1);
+}
+
 
 
 .greeting .line:nth-child(1) { animation-delay: 0.4s; }
