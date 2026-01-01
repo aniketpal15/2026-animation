@@ -1,0 +1,255 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #1b1b3a 0%, #050510 60%, #000 100%);
+  color: #fff;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* stars background */
+.stars {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(2px 2px at 80% 10%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(2px 2px at 50% 80%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(2px 2px at 20% 70%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(2px 2px at 90% 60%, rgba(255,255,255,0.7), transparent);
+  opacity: 0.8;
+  animation: stars 8s linear infinite alternate;
+  z-index: 0;
+}
+
+@keyframes stars {
+  0% { transform: translate3d(0,0,0); }
+  100% { transform: translate3d(-20px, 20px, 0); }
+}
+
+/* fireworks with pure CSS burst */
+.fireworks {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.fw {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  box-shadow:
+    0 -40px 0 2px #ffd93b,
+    28px -28px 0 2px #ff6bcb,
+    40px 0 0 2px #6bffb5,
+    28px 28px 0 2px #ffb86b,
+    0 40px 0 2px #6bb7ff,
+    -28px 28px 0 2px #ff6bb7,
+    -40px 0 0 2px #b86bff,
+    -28px -28px 0 2px #6bffea;
+  opacity: 0;
+}
+
+.fw-1 { left: 18%; top: 30%; animation: boom 2.4s infinite 0.2s; }
+.fw-2 { left: 72%; top: 25%; animation: boom 2.8s infinite 0.5s; }
+.fw-3 { left: 30%; top: 12%; animation: boom 3s infinite 1s; }
+.fw-4 { left: 60%; top: 55%; animation: boom 2.6s infinite 1.3s; }
+
+@keyframes boom {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* full-screen canvas for extra air crackers */
+#firework-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 2026 text */
+.year-wrap {
+  position: relative;
+  display: flex;
+  gap: 0.15em;
+  z-index: 3;
+  margin-bottom: 16px;
+}
+
+.digit {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.9),
+    0 0 25px #ff6bcb,
+    0 0 45px #ffd93b;
+  animation: float 3s ease-in-out infinite;
+}
+
+.d0 { animation-delay: 0.15s; }
+.d2b { animation-delay: 0.3s; }
+.d6 { animation-delay: 0.45s; }
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05);
+  }
+}
+
+/* greeting lines */
+
+.greeting {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.greeting .line {
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #ffe9ff;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.65);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.9s forwards;
+}
+.greeting .line .lower{
+     text-transform: none;
+     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.greeting .line .fol a{
+  text-decoration: none;
+  color: white;
+  border: 2px solid white;
+  border-radius: 20px;
+  box-shadow:0 0 5px rgba(255, 255, 255, 0.9),
+    0 0 10px #ff6bcb,
+    0 0 15px #ffd93b; ;
+  padding: 10px;
+  margin: 5px;
+  background-color: rga(255, 255, 255, 0.2);
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.2),
+    0 0 35px #ff6bcb,
+    0 0 65px #ffd93b;
+}
+
+
+.greeting .line:nth-child(1) { animation-delay: 0.4s; }
+.greeting .line:nth-child(2) { animation-delay: 0.7s; }
+.greeting .line:nth-child(3) { animation-delay: 1s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* celebrate button */
+#celebrate-btn {
+  position: relative;
+  z-index: 3;
+  padding: 12px 28px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ff6bcb, #ffd93b);
+  color: #1b0022;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow:
+    0 0 18px rgba(255, 107, 203, 0.6),
+    0 0 32px rgba(255, 217, 59, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+#celebrate-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  filter: brightness(1.08);
+}
+
+#celebrate-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* confetti pieces */
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.9;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translate3d(0, -100vh, 0) rotateZ(0deg);
+  }
+  100% {
+    transform: translate3d(0, 100vh, 0) rotateZ(360deg);
+    opacity: 0;
+  }
+}
+
+/* responsive tweaks */
+@media (max-width: 600px) {
+  .year-wrap {
+    margin-bottom: 10px;
+  }
+  .greeting {
+    margin-bottom: 20px;
+  }
+}
